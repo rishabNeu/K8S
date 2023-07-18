@@ -7,7 +7,7 @@
 
 ## :basecampy: _Pods_
 
----
+
 
 - A Pod is such that it contain one or more containers inside it.
 - Basically an object
@@ -15,12 +15,12 @@
 
 ``` kubectl get pod pod_name -o yaml ```
 > Note : To copy the above configuration to a file so that in future you can use it create/edit some other pods with almost same configuration.
----
+
 
 
 ## :control_knobs: _Admission Controllers_
 
----
+
 
 * It helps us enforce better security meausres on how a K8S cluster is to be used.
 
@@ -31,21 +31,22 @@
 The kube-api yaml file is at location :
 `/etc/kubernetes/manifests/kube-apiserver.yaml`
 
----
+
 
 ## :butterfly: _Validating and Mutating Admission Controllers_
 
----
+
 
 * Here, controllers first validates and then if required mutates basically change the object definition which is to be created.
 
----
+
 
 ## :atom: _API Versions_
 
----
+
 
 #### _Alpha_
+
 - Alpha version might have bugs and is not that reliable.
 - can be dropped
 - Not enabled by default
@@ -57,12 +58,10 @@ The kube-api yaml file is at location :
 - Can have minor bugs
 
 
----
-
 
 ## :artist: _Author_
 
----
+
 
 [Rishab Agarwal](mailto:agarwal.risha@northeastern.edu)
 
