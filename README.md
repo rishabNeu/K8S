@@ -53,12 +53,13 @@ The kube-api yaml file is at location :
 - enabled by default
 - Can have minor bugs
 
----
+
+***
 
 
 ## :artist: Author
 
----
+***
 
 [Rishab Agarwal](mailto:agarwal.risha@northeastern.edu)
 
