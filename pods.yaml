@@ -1,0 +1,10 @@
+apiVersion: v1 #this is necessary and must refer the doc if any changes
+kind: Pod 
+metadata:
+  name: nginx   #name of the pod 
+spec:    
+  containers:
+  - name: nginx
+    image: nginx:1.14.2   # which img to pull for this container inside the pod
+    ports: 
+    - containerPort: 80 
