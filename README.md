@@ -1,1 +1,1 @@
-![K8S](https://www.vectorlogo.zone/util/preview.html?image=/logos/kubernetes/kubernetes-ar21.svg)
+![K8S](/images/kubernetes-ar21.svg)
