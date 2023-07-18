@@ -6,6 +6,7 @@
 
 
 ## :basecampy: _Pods_
+
 ---
 
 - A Pod is such that it contain one or more containers inside it.
@@ -18,6 +19,7 @@
 
 
 ## :control_knobs: _Admission Controllers_
+
 ---
 
 * It helps us enforce better security meausres on how a K8S cluster is to be used.
@@ -31,7 +33,7 @@ The kube-api yaml file is at location :
 
 ---
 
-## :butterfly: Validating and Mutating Admission Controllers
+## :butterfly: _Validating and Mutating Admission Controllers_
 
 ---
 
@@ -39,7 +41,7 @@ The kube-api yaml file is at location :
 
 ---
 
-## :atom: API Versions
+## :atom: _API Versions_
 
 ---
 
@@ -49,17 +51,18 @@ The kube-api yaml file is at location :
 - Not enabled by default
 
 #### _Beta_
+
 - After end to end testing and major bugs are fixed then the Alpha version moves to Beta phase.
 - enabled by default
 - Can have minor bugs
 
 
-***
+---
 
 
-## :artist: Author
+## :artist: _Author_
 
-***
+---
 
 [Rishab Agarwal](mailto:agarwal.risha@northeastern.edu)
 
