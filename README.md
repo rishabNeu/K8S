@@ -1,5 +1,10 @@
 ![K8S](/images/kubernetes-ar21.svg)
 
+>NOTE : When you use any of the above yaml files as given in the repository, you will have to run the below command to create any of the Kubernetes Objects :
+
+` kubectl create -f file_name.yaml `
+
+
 ## :basecampy: _Pods_
 ---
 
