@@ -7,8 +7,6 @@
 
 ## :basecampy: _Pods_
 
-
-
 - A Pod is such that it contain one or more containers inside it.
 - Basically an object
 -  You can check the configuration of any pod definition file using the below command :
@@ -57,6 +55,19 @@ The kube-api yaml file is at location :
 - enabled by default
 - Can have minor bugs
 
+
+#### _GA Stable_
+-  yes ny default
+- highly reliable
+
+
+#### :x: _API Deprecations_
+
+- If you want to deprecate any resource in that particular API group you need cannot removw it from that group in that current release.
+- You need to remove it from the next api version/release and that resource will continue to be present in previous version.
+    - Command to check about any particular resource like its version and group :
+
+    ` kubectl explain deployment `
 
 
 ## :artist: _Author_
