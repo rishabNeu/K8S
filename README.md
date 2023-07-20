@@ -61,7 +61,7 @@ The kube-api yaml file is at location :
 - highly reliable
 
 
-#### :x: _API Deprecations_
+####  :x:  _API Deprecations_
 
 - If you want to deprecate any resource in that particular API group you need cannot removw it from that group in that current release.
 - You need to remove it from the next api version/release and that resource will continue to be present in previous version.
@@ -70,9 +70,46 @@ The kube-api yaml file is at location :
     ` kubectl explain deployment `
 
 
+####  :passport_control:  _Controllers_
+- Manage, observe and mantain the state of the resources/objects in the k8s cluster.
+
+
+####  :passport_control:  _Deployment Stratergies_
+
+1. **Blue Green Stratergy**
+- The Blue part is that where the application is the older one & Green contains the newer version of the app
+- But 100% of traffic is routed to the older one i.e Blue one 
+- Once green (newer app) - all tests are done and passed then the traffic is routed to green one (newer app) and blue deployment is taken down
+- Basically service file is updated to route traffic to Green by changing the selector labels.
+
+
+2. **Canary Stratergy**  :stopwatch:    
+- Here, one primary deployment where the current version of application is running and at the same time canary deployment is there where only some small percent of traffic is routed here which is the newer version of application (current app's).
+- So, once all tests are done on canary deployment then canary deployment is taken down and current primary version application (pods) are upgraded with newer version of application.
+
+
+## :wheel_of_dharma: _Helm_
+- Also called as Package Manager 
+-  Manages all **Objects** of an application like pods, deployments, services, etc. at one place.
+- If we need to update some values of some objects we can just use values.yaml file and pass in necessary key and value pairs to it and apply a 
+`helm upgrade` command.
+
+## :chart_with_upwards_trend: _Helm Charts_
+- Together value.yaml file & template files of objects form the Helm Chart.
+
+>NOTE : You can refer to already created charts by other people here : **[Artifact Hub](https://artifacthub.io/ "Artifact Hub")**
+ 
+Some Helm commands :
+
+
+```helm install [release-name] [chart-name] ```
+
+
+
+
+
+
 ## :artist: _Author_
-
-
 
 [Rishab Agarwal](mailto:agarwal.risha@northeastern.edu)
 
