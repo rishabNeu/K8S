@@ -8,6 +8,18 @@
 ## :earth_asia:  _ConfigMaps_
 - It is helpful inorder to pass the env variables to the required Pods.
 - We need to create **Config Maps** either through imperative or declarative(yaml file) way.
+
+Imperative way to create config map :
+
+```shell
+  #for single key value pairs
+  kubectl create cm <cm-name> --from-literal=<key1>=<value1> --from-literal=<key2>=<value2>
+
+  #to create from a file
+  kubectl create cm <cm-name> --from-file=<path to file> # colon or equals to as delimiter between keys and values
+  kubectl create cm <cm-name> --from-file=<directory>
+```
+
  
 
 ## :basecampy: _Pods_
