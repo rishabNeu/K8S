@@ -5,6 +5,38 @@
 ` kubectl create -f file_name.yaml `
 
 
+## Some Commands for Exam (Sheet): **[Click Here]( https://gist.github.com/iamavnish/28f361afb6ded81866df816c915157fe "Link")**
+
+## :shushing_face:  _Secrets_
+- Used to store sensitive information like passwords and keys.
+- They are stored in an encoded format.
+- TO use it we need to :
+    - create secret 
+    - inject it into Pod
+- Here the data needs to be **Encoded**, so it is done using ` echo -n 'root' | base64 ` command
+- **Decode**
+` echo -n 'decode_value' | base64 --decode `
+
+Imperative way to create secrets :
+
+```shell 
+  #get secrets
+  kubectl get secrets
+
+  # describe or get info about particular secret
+  kubectl describe secret <secret-name> # This shows the attributes in secret but hides the values.
+
+  kubectl get secret <secret-name> -o yaml # To view the values (encoded).
+
+  # If you enter the pod where secret is injected, you can see decoded values.
+  kubectl create secret generic <secret-name> --from-literal=<key1>=<value1> --from-literal=<key2>=<value2>
+  kubectl create secret generic <secret-name> --from-file=<path to file> # colon or equals to as delimiter between keys and values
+
+
+```
+
+
+
 ## :earth_asia:  _ConfigMaps_
 - It is helpful inorder to pass the env variables to the required Pods.
 - We need to create **Config Maps** either through imperative or declarative(yaml file) way.
@@ -21,6 +53,26 @@ Imperative way to create config map :
 ```
 
  
+## :computer:  _Service Accounts_
+- Used by external applications to query or authenticate itself to k8s cluster inorder to use the APIs of k8s.
+- As per latest version of k8s first we need to create service account as it will automatically not generate the secret object which contains token
+- When we use service account inside the pod, the secret for that service account is mounted as volume inside the pod.
+
+- We need to create token for that particular account by running the command
+
+```shell
+
+kubectl create sa <sa-name>
+
+kubectl get sa
+
+kubectl describe sa <sa-name>
+
+# To fetch token from service account
+kubectl describe sa <sa-name> # gives secret name
+kubectl describe secret <secret-name> # gives token stored in secret
+```
+
 
 ## :basecampy: _Pods_
 
