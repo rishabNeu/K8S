@@ -5,6 +5,11 @@
 ` kubectl create -f file_name.yaml `
 
 
+## :earth_asia:  _ConfigMaps_
+- It is helpful inorder to pass the env variables to the required Pods.
+- We need to create **Config Maps** either through imperative or declarative(yaml file) way.
+ 
+
 ## :basecampy: _Pods_
 
 - A Pod is such that it contain one or more containers inside it.
