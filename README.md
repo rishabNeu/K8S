@@ -111,6 +111,28 @@ kubectl create cj busybox --image=busybox --schedule="*/1 * * * *" -- /bin/sh -c
 
 ```
 
+## :basecampy: _Services_
+- Service Types:
+    - Node port : This services helps to access internal pods from the port on the node(exposing port on node to outside world)
+   ![NodePort](https://www.bogotobogo.com/DevOps/Docker/images/Docker-Kubeernetes-Pods-Services/Service-Port-NodePort-TargetPort.png)
+
+
+    - ClusterIp : This is the default service type and we don't have to specify a service type. It exposes the service on an internal-cluster IP.
+From inside (reachable only from within the cluster)
+    - LoadBalancer : This service type exposes the service via cloud provider's LB
+
+```shell
+kubectl apply -f <svc.yaml>
+kubectl get svc
+kubectl describe svc <service-name> # to get to know about port, target port etc.
+kubectl delete svc <service-name>
+
+kubectl expose pod redis --port=6379 --name=redis-service --type=ClusterIP --dry-run=client -o yaml > svc.yaml
+kubectl expose pod nginx --port=80 --target-port=8080 --name=nginx-service --type=NodePort --dry-run=client -o yaml > svc.yaml
+kubectl expose deploy <deploy-name> --port=<> 
+```
+
+> Note : **IP of service is known as Cluster-IP (internal ip). Service can be accessed by pods using Cluster-IP or service name.**
 
 ## :basecampy: _Pods_
 

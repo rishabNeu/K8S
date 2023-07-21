@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  type: NodePort
+  selector:  #this is imp to match with pod which you want to associate this service to
+      app: myapp  #this should be same as pod label
+      type: front-end #this should be same as pod label
+
+  ports:
+      # By default and for convenience, the `targetPort` is set to the same value as the `port` field.
+    - port: 80 #service port
+      targetPort: 80 #pod port
+      # Optional field
+      # By default and for convenience, the Kubernetes control plane will allocate a port from a range (default: 30000-32767)
+      nodePort: 30007 #node's port range from 30000 - 32000
