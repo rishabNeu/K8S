@@ -7,6 +7,9 @@
 
 ## Some Commands for Exam (Sheet): **[Click Here]( https://gist.github.com/iamavnish/28f361afb6ded81866df816c915157fe "Link")**
 
+
+> Notes : monolith app broken down into smaller services(micro)
+
 ## :shushing_face:  _Secrets_
 - Used to store sensitive information like passwords and keys.
 - They are stored in an encoded format.
@@ -71,6 +74,41 @@ kubectl describe sa <sa-name>
 # To fetch token from service account
 kubectl describe sa <sa-name> # gives secret name
 kubectl describe secret <secret-name> # gives token stored in secret
+```
+
+## :computer:  _Jobs_
+- Can use it to perform any type of jobs like batch processing, generating a report and them mailing it.
+- Some points to remember about job in k8s
+    - In case of pods, default value for restart property is Always and in case of jobs, default value for restart property is Never.
+    -  Job has pod template. Job has 2 spec sections - one for job and one for pod (in order).
+    - A pod created by a job must have its restartPolicy be **OnFailure or Never**. If the restartPolicy is OnFailure, a failed container will be re-run on the same pod. If the restartPolicy is Never, a failed container will be re-run on a new pod.
+
+    -  Job properties to remember: `completions, backoffLimit, parallelism, activeDeadlineSeconds, restartPolicy.`
+    -  By default, pods in a job are created one after the other (sequence). Second pod is created only after the first one is finished.
+
+
+```shell
+    kubectl create job busybox --image=busybox -- /bin/sh -c "echo hello;sleep 30;echo world"
+   
+    kubectl get jobs
+
+    #once a job is created then it launches a pod to do the work
+    #so you check the logs of that pod after we get the name of the pod from running the above the commands to get jobs
+    kubectl logs busybox-qhcnx # pod under job
+
+    kubectl delete job <job-name>
+```
+
+
+## :computer:  _Cron Jobs_
+- In a cronjob, there are 2 templates - one for job and another for pod.
+- In a cronjob, there are 3 spec sections - one for cronjob, one for job and one for pod (in order).
+- Properties to remember: spec -> successfulJobHistoryLimit, spec -> failedJobHistoryLimit
+
+```shell
+# Create a cron job with image busybox that runs on a schedule and writes to standard output
+kubectl create cj busybox --image=busybox --schedule="*/1 * * * *" -- /bin/sh -c "date; echo Hello from Kubernetes cluster" 
+
 ```
 
 
