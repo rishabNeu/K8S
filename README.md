@@ -144,6 +144,10 @@ kubectl expose deploy <deploy-name> --port=<>
 > Note : To copy the above configuration to a file so that in future you can use it create/edit some other pods with almost same configuration.
 
 
+## :basecampy: _Ingress_
+- Can think of it as an Application layer 7 load balancer.
+
+
 
 ## :control_knobs: _Admission Controllers_
 
@@ -234,15 +238,9 @@ Some Helm commands :
 ```helm install [release-name] [chart-name] ```
 
 
-
-
-
-
 ## :artist: _Author_
 
 [Rishab Agarwal](mailto:agarwal.risha@northeastern.edu)
-
-
 
 
 
