@@ -76,7 +76,7 @@ kubectl describe sa <sa-name> # gives secret name
 kubectl describe secret <secret-name> # gives token stored in secret
 ```
 
-## :computer:  _Jobs_
+## :fairy_man:  _Jobs_
 - Can use it to perform any type of jobs like batch processing, generating a report and them mailing it.
 - Some points to remember about job in k8s
     - In case of pods, default value for restart property is Always and in case of jobs, default value for restart property is Never.
@@ -100,7 +100,7 @@ kubectl describe secret <secret-name> # gives token stored in secret
 ```
 
 
-## :computer:  _Cron Jobs_
+## :merman:  _Cron Jobs_
 - In a cronjob, there are 2 templates - one for job and another for pod.
 - In a cronjob, there are 3 spec sections - one for cronjob, one for job and one for pod (in order).
 - Properties to remember: spec -> successfulJobHistoryLimit, spec -> failedJobHistoryLimit
