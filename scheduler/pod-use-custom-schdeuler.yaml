@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: annotation-default-scheduler
+  labels:
+    name: multischeduler-example
+spec:
+  schedulerName: my-custom-scheduler
+  containers:
+  - name: nginx
+    image: nginx
