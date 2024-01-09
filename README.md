@@ -14,7 +14,7 @@
 - Used to store sensitive information like passwords and keys.
 - They are stored in an encoded format.
 - TO use it we need to :
-    - create secret 
+    - create secret
     - inject it into Pod
 - Here the data needs to be **Encoded**, so it is done using ` echo -n 'root' | base64 ` command
 - **Decode**
@@ -22,7 +22,7 @@
 
 Imperative way to create secrets :
 
-```shell 
+```shell
   #get secrets
   kubectl get secrets
 
@@ -55,7 +55,7 @@ Imperative way to create config map :
   kubectl create cm <cm-name> --from-file=<directory>
 ```
 
- 
+
 ## :computer:  _Service Accounts_
 - Used by external applications to query or authenticate itself to k8s cluster inorder to use the APIs of k8s.
 - As per latest version of k8s first we need to create service account as it will automatically not generate the secret object which contains token
@@ -89,7 +89,7 @@ kubectl describe secret <secret-name> # gives token stored in secret
 
 ```shell
     kubectl create job busybox --image=busybox -- /bin/sh -c "echo hello;sleep 30;echo world"
-   
+
     kubectl get jobs
 
     #once a job is created then it launches a pod to do the work
@@ -107,7 +107,7 @@ kubectl describe secret <secret-name> # gives token stored in secret
 
 ```shell
 # Create a cron job with image busybox that runs on a schedule and writes to standard output
-kubectl create cj busybox --image=busybox --schedule="*/1 * * * *" -- /bin/sh -c "date; echo Hello from Kubernetes cluster" 
+kubectl create cj busybox --image=busybox --schedule="*/1 * * * *" -- /bin/sh -c "date; echo Hello from Kubernetes cluster"
 
 ```
 
@@ -129,7 +129,7 @@ kubectl delete svc <service-name>
 
 kubectl expose pod redis --port=6379 --name=redis-service --type=ClusterIP --dry-run=client -o yaml > svc.yaml
 kubectl expose pod nginx --port=80 --target-port=8080 --name=nginx-service --type=NodePort --dry-run=client -o yaml > svc.yaml
-kubectl expose deploy <deploy-name> --port=<> 
+kubectl expose deploy <deploy-name> --port=<>
 ```
 
 > Note : **IP of service is known as Cluster-IP (internal ip). Service can be accessed by pods using Cluster-IP or service name.**
@@ -211,31 +211,57 @@ The kube-api yaml file is at location :
 
 1. **Blue Green Stratergy**
 - The Blue part is that where the application is the older one & Green contains the newer version of the app
-- But 100% of traffic is routed to the older one i.e Blue one 
+- But 100% of traffic is routed to the older one i.e Blue one
 - Once green (newer app) - all tests are done and passed then the traffic is routed to green one (newer app) and blue deployment is taken down
 - Basically service file is updated to route traffic to Green by changing the selector labels.
 
 
-2. **Canary Stratergy**  :stopwatch:    
+2. **Canary Stratergy**  :stopwatch:
 - Here, one primary deployment where the current version of application is running and at the same time canary deployment is there where only some small percent of traffic is routed here which is the newer version of application (current app's).
 - So, once all tests are done on canary deployment then canary deployment is taken down and current primary version application (pods) are upgraded with newer version of application.
 
 
 ## :wheel_of_dharma: _Helm_
-- Also called as Package Manager 
+- Also called as Package Manager
 -  Manages all **Objects** of an application like pods, deployments, services, etc. at one place.
-- If we need to update some values of some objects we can just use values.yaml file and pass in necessary key and value pairs to it and apply a 
+- If we need to update some values of some objects we can just use values.yaml file and pass in necessary key and value pairs to it and apply a
 `helm upgrade` command.
 
 ## :chart_with_upwards_trend: _Helm Charts_
 - Together value.yaml file & template files of objects form the Helm Chart.
 
 >NOTE : You can refer to already created charts by other people here : **[Artifact Hub](https://artifacthub.io/ "Artifact Hub")**
- 
+
 Some Helm commands :
 
 
 ```helm install [release-name] [chart-name] ```
+
+## :mantelpiece_clock: _Multiple Schedulers_
+- We can write our custom logic for `Scheduler`if we want some specific conditions to be met
+- Steps to use the custom scheduler:
+    1. Download the scheduler binary from k8s website
+    2. Create a config file for scheduler where we will define the configuration for custom scheduler like the name, leader, etc
+    3. Create a pod or deployment where we would point the config flag to the newly created custom scheduler in the above step
+    4. Just create the above pod and check if Scheduler is created or not
+    5. Now, create a pod and add `schedulerName` property and add the name of the created custom scheduler to it
+
+```bash
+
+# to check if pod is scheduler on that custom scheduler
+kubectl get events -o wide
+
+```
+
+## :tornado: _Static Pods_
+- No master node, only a node and `Kubelet` is present on it with a container runtime ed **Docker** & no **K8S Cluster**
+- Kubelet knows hows to create Pods
+- It can create Pods by periodically checking the folder /etc/kubernetes/manifests in the node where kubelet is running
+- Basicaly why use Static Pods?
+    1. Because you can setup your control plane components such as API server, controller manager, scheduler, etc (as they all are pods).
+    2. So, Kubelet is to be installed on the `Master Node` & then just run the Pod manifests of all the components of control plane
+    3. This is how the cluster is setup using the `kubeadm` tool.
+
 
 
 ## :artist: _Author_
