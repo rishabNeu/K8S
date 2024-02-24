@@ -4,6 +4,16 @@
 
 ` kubectl create -f file_name.yaml `
 
+> Also, if we want to exec any commands or use a shell of any pod we can use the command
+
+```shell
+kubectl exec -it <pod-name> -- sh
+
+# to hit any url from inside the shell
+wget www.google.com
+
+ ```
+
 
 ## Some Commands for Exam (Sheet): **[Click Here]( https://gist.github.com/iamavnish/28f361afb6ded81866df816c915157fe "Link")**
 
@@ -261,6 +271,44 @@ kubectl get events -o wide
     1. Because you can setup your control plane components such as API server, controller manager, scheduler, etc (as they all are pods).
     2. So, Kubelet is to be installed on the `Master Node` & then just run the Pod manifests of all the components of control plane
     3. This is how the cluster is setup using the `kubeadm` tool.
+
+## :: _Performance Metrics_
+- In order to view **Performance Metrics** in k8s Cluster
+- We first need to enable the `metrics server`
+
+```bash
+
+# to view the cpu and memory usage by node
+kubectl top node
+
+# to view the cpu and memory usage by pod
+kubectl top pod
+
+# can check on which nodes the pods are scheduled
+kubectl get pods -o wide
+
+```
+
+# _Cluster Maintainence_
+
+## :abacus: _OS Upgrades_
+- When we drain a node, the pods on that node are gracefully terminated and then recreated on the other node in the cluster (If there are other nodes present)
+- The node is then marked as `cordond` or `unschedulable`
+- Then when the node is upgraded and rebooted you need to mark it uncordon
+```bash
+
+# to drain a node and evict pods on that node
+kubectl drain node01 --ignore-daemonsets
+
+# marks the node schedulable
+kubectl uncordon node_1
+
+# marks the node unschedulable & it does not drain the node or move the pods
+# makes sure no new pods are scheduled on this node
+kubectl ncordon node_1
+
+
+```
 
 
 
