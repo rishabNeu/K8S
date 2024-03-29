@@ -371,6 +371,28 @@ kubectl get pods -o wide
 - `Router` -> It is used to connect one or more different networks together where devices from different n/w can talk to devices on different n/w and all this is possible because of router
 - `Gateway` -> It acts as a door before the router/host to guide the packets to respected destination (in a different n/w)
 
+```bash
+
+# to get the interface on that host
+ip link
+
+# to get the ip address
+ip addr
+
+# this will add the ip address to the device
+ip addr add 192.168.1.10/24 dev eth0
+
+# to check the route table of the device
+ip route
+
+# to add entry in route table gateway and destination
+ip route add 192.168.1.0/24 <dest-ip>  via 192.168.2.1 <gateway ip>
+
+# change the below to 1 to allow to pass packets to destination through the host
+cat /proc/sys/net/ipv4/ip_forward
+0
+
+```
 
 
 ## :artist: _Author_
